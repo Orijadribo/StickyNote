@@ -4,7 +4,12 @@ from tkinter import filedialog
 
 def openfile():
     filepath = filedialog.askopenfilename()
-    file = open(filepath, "r")
+
+    if filepath == '':
+        return
+    else:
+        file = open(filepath, "r")
+
     data = file.read()
     print(data)
     file.close()
