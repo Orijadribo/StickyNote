@@ -15,7 +15,6 @@ def openfile():
     file.close()
 
 
-
 def savefile():
     file = filedialog.asksaveasfile(defaultextension='.txt',
                                     filetypes=[
