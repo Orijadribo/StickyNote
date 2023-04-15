@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
+from tkinter import colorchooser
 
 
 def openfile():
@@ -31,6 +32,34 @@ def savefile():
     file.close()
 
 
+def newColor():
+    def colorPicker():
+        global colorHex
+        colorN = colorchooser.askcolor()
+        colorHex = colorN[1]
+        colorHex = str(colorHex)
+        return colorHex
+
+    global color
+    color = colorPicker()
+    # print(color)
+    return color
+
+
+colorB = ['light yellow']
+i = [0]
+
+
+def asking():
+    global colorB
+    global i
+    colorB.append(newColor())
+    print(colorB)
+    i[0] = len(colorB) - 1
+    print(i[0])
+    # print(i)
+
+
 def newfile():
     note()
 
@@ -52,6 +81,7 @@ def paste():
 
 
 def note():
+    global window
     window = Tk()
     window.title("Sticky Note")
 
@@ -72,10 +102,12 @@ def note():
     editMenu.add_command(label="Cut", command=cut)
     editMenu.add_command(label="Copy", command=copy)
     editMenu.add_command(label="Paste", command=paste)
+    editMenu.add_separator()
+    editMenu.add_command(label="Choose background color", command=asking)
 
     global text
     text = Text(window,
-                bg='light yellow',
+                bg=colorB[i[0]],
                 font=("ink free", 25),
                 height=8,
                 width=20,
