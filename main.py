@@ -30,6 +30,10 @@ def savefile():
     file.close()
 
 
+def newfile():
+    note()
+
+
 def select():
     pass
 
@@ -46,32 +50,39 @@ def paste():
     pass
 
 
-window = Tk()
-window.title("Sticky Note")
+def note():
+    window = Tk()
+    window.title("Sticky Note")
 
-menubar = Menu(window)
-window.config(menu=menubar)
+    menubar = Menu(window)
+    window.config(menu=menubar)
 
-fileMenu = Menu(menubar, tearoff=0)
-menubar.add_cascade(label="File", menu=fileMenu)
-fileMenu.add_command(label="Open", command=openfile)
-fileMenu.add_command(label="Save", command=savefile)
-fileMenu.add_separator()
-fileMenu.add_command(label="Exit", command=quit)
+    fileMenu = Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="File", menu=fileMenu)
 
-editMenu = Menu(menubar, tearoff=0)
-menubar.add_cascade(label="Edit", menu=editMenu)
-editMenu.add_command(label="Cut", command=cut)
-editMenu.add_command(label="Copy", command=copy)
-editMenu.add_command(label="Paste", command=paste)
+    fileMenu.add_command(label="New", command=newfile)
+    fileMenu.add_command(label="Open", command=openfile)
+    fileMenu.add_command(label="Save", command=savefile)
+    fileMenu.add_separator()
+    fileMenu.add_command(label="Exit", command=quit)
 
-text = Text(window,
-            bg='light yellow',
-            font=("ink free", 25),
-            height=8,
-            width=20,
-            padx=20,
-            pady=20)
-text.pack()
+    editMenu = Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="Edit", menu=editMenu)
+    editMenu.add_command(label="Cut", command=cut)
+    editMenu.add_command(label="Copy", command=copy)
+    editMenu.add_command(label="Paste", command=paste)
 
-window.mainloop()
+    global text
+    text = Text(window,
+                bg='light yellow',
+                font=("ink free", 25),
+                height=8,
+                width=20,
+                padx=20,
+                pady=20)
+    text.pack()
+
+    window.mainloop()
+
+
+note()
