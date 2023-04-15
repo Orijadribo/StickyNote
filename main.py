@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
+from tkinter import ttk
 
 
 def openfile():
@@ -80,7 +81,7 @@ def note():
                 width=20,
                 padx=20,
                 pady=20)
-    text.pack()
+    text.pack(expand=True, fill="both")
 
     window.mainloop()
 
