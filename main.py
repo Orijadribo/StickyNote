@@ -13,7 +13,7 @@ def openfile():
         file = open(filepath, "r")
 
     data = file.read()
-    print(data)
+    # print(data)
     file.close()
 
 
@@ -54,14 +54,8 @@ def asking():
     global colorB
     global i
     colorB.append(newColor())
-    print(colorB)
     i[0] = len(colorB) - 1
-    print(i[0])
-    # print(i)
-
-
-def newfile():
-    note()
+    Text.config(text, bg=colorB[i[0]])
 
 
 def select():
@@ -81,7 +75,6 @@ def paste():
 
 
 def note():
-    global window
     window = Tk()
     window.title("Sticky Note")
 
@@ -91,7 +84,7 @@ def note():
     fileMenu = Menu(menubar, tearoff=0)
     menubar.add_cascade(label="File", menu=fileMenu)
 
-    fileMenu.add_command(label="New", command=newfile)
+    fileMenu.add_command(label="New", command=note)
     fileMenu.add_command(label="Open", command=openfile)
     fileMenu.add_command(label="Save", command=savefile)
     fileMenu.add_separator()
