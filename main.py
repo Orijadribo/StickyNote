@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import colorchooser
 
 
-def openfile():
+def openfile():  # Function to open files
     filepath = filedialog.askopenfilename()
 
     if filepath == '':
@@ -17,7 +17,7 @@ def openfile():
     file.close()
 
 
-def savefile():
+def savefile():  # Function to save the current file
     file = filedialog.asksaveasfile(defaultextension='.txt',
                                     filetypes=[
                                         ("Text file", ".txt"),
@@ -32,8 +32,8 @@ def savefile():
     file.close()
 
 
-def newColor():
-    def colorPicker():
+def newColor():  # Function to change the colour of the sticky note
+    def colorPicker():  # Function to pick a new colour
         global colorHex
         colorN = colorchooser.askcolor()
         colorHex = colorN[1]
@@ -46,11 +46,11 @@ def newColor():
     return color
 
 
-colorB = ['light yellow']
+colorB = ['light yellow']  # Initial colour of the sticky note
 i = [0]
 
 
-def asking():
+def asking():  # FUnction to initiate the change of colour
     global colorB
     global i
     colorB.append(newColor())
@@ -58,27 +58,27 @@ def asking():
     Text.config(text, bg=colorB[i[0]])
 
 
-def select():
+def select():  # FUnction to select all the text on the note
     pass
 
 
-def cut():
+def cut():  # FUnction to cut the text on the note
     pass
 
 
-def copy():
+def copy():  # Function to copy some text from the note
     pass
 
 
-def paste():
+def paste():  # Function to paste text from the clipboard
     pass
 
 
-def note():
-    window = Tk()
-    window.title("Sticky Note")
+def note():  # Function to create a window and a text area
+    window = Tk()  # Creating a window from tkinter
+    window.title("Sticky Note")  # Window title
 
-    menubar = Menu(window)
+    menubar = Menu(window)  # Menu bar for the window
     window.config(menu=menubar)
 
     fileMenu = Menu(menubar, tearoff=0)
@@ -99,7 +99,7 @@ def note():
     editMenu.add_command(label="Choose background color", command=asking)
 
     global text
-    text = Text(window,
+    text = Text(window,  # Creating a text area for the note
                 bg=colorB[i[0]],
                 font=("ink free", 25),
                 height=8,
@@ -111,4 +111,4 @@ def note():
     window.mainloop()
 
 
-note()
+note()  # Calling the function to create the window
