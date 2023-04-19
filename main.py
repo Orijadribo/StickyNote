@@ -13,7 +13,7 @@ def openfile():  # Function to open files
         file = open(filepath, "r")
 
     data = file.read()
-    # print(data)
+    print(data)
     file.close()
 
 
@@ -50,7 +50,7 @@ colorB = ['light yellow']  # Initial colour of the sticky note
 i = [0]
 
 
-def asking():  # FUnction to initiate the change of colour
+def asking():  # Function to initiate the change the background colour
     global colorB
     global i
     colorB.append(newColor())
@@ -58,16 +58,27 @@ def asking():  # FUnction to initiate the change of colour
     Text.config(text, bg=colorB[i[0]])
 
 
+def font():  # Function to initiate the change of the font colour
+    global colorB
+    global i
+    colorB.append(newColor())
+    i[0] = len(colorB) - 1
+    Text.config(text, fg=colorB[i[0]])
+
+
 def select():  # FUnction to select all the text on the note
     pass
 
 
 def cut():  # FUnction to cut the text on the note
-    pass
+    copied = text.get("1.0", END)
+    print(copied)
+    text.delete("1.0", END)
 
 
 def copy():  # Function to copy some text from the note
-    pass
+    copied = text.get("1.0", END)
+    print(copied)
 
 
 def paste():  # Function to paste text from the clipboard
@@ -97,6 +108,7 @@ def note():  # Function to create a window and a text area
     editMenu.add_command(label="Paste", command=paste)
     editMenu.add_separator()
     editMenu.add_command(label="Choose background color", command=asking)
+    editMenu.add_command(label="Choose text color", command=font)
 
     global text
     text = Text(window,  # Creating a text area for the note
